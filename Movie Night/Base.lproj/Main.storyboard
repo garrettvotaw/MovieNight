@@ -203,19 +203,48 @@
         <!--Actors/Actresses-->
         <scene sceneID="SlI-nS-kfr">
             <objects>
-                <tableViewController title="Actors/Actresses" id="98k-N1-fZI" sceneMemberID="viewController">
+                <tableViewController title="Actors/Actresses" id="98k-N1-fZI" customClass="ActorTableViewController" customModule="Movie_Night" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gD5-o7-i6y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="BUE-cT-tVK">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="actorCell" rowHeight="79" id="BUE-cT-tVK" customClass="ActorTableViewCell" customModule="Movie_Night" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BUE-cT-tVK" id="tIS-8H-K3T">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="327" height="78.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tom Hanks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPM-DP-A1U">
+                                            <rect key="frame" x="86" y="27" width="99" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EKW-6s-ngC">
+                                            <rect key="frame" x="16" y="24.5" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="jqL-Ig-pi4"/>
+                                                <constraint firstAttribute="width" constant="30" id="y9p-Bi-nYu"/>
+                                            </constraints>
+                                            <state key="normal" image="unselectedButton"/>
+                                            <connections>
+                                                <action selector="selectedButton" destination="BUE-cT-tVK" eventType="touchUpInside" id="OWy-ZM-bMt"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="EKW-6s-ngC" firstAttribute="centerY" secondItem="tIS-8H-K3T" secondAttribute="centerY" id="Q6K-58-y5K"/>
+                                        <constraint firstItem="EKW-6s-ngC" firstAttribute="leading" secondItem="tIS-8H-K3T" secondAttribute="leadingMargin" id="n7v-Nx-uBz"/>
+                                        <constraint firstItem="sPM-DP-A1U" firstAttribute="leading" secondItem="EKW-6s-ngC" secondAttribute="trailing" constant="40" id="pUe-5D-Xwy"/>
+                                        <constraint firstItem="sPM-DP-A1U" firstAttribute="centerY" secondItem="tIS-8H-K3T" secondAttribute="centerY" id="te6-S1-Jzf"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="sPM-DP-A1U" id="wyG-Ur-9DE"/>
+                                    <outlet property="selectorButton" destination="EKW-6s-ngC" id="YDf-xI-lB8"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -226,12 +255,15 @@
                     <navigationItem key="navigationItem" title="Actors/Actresses" id="YNg-w2-Wqd">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="V03-k8-lmq">
                             <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="donePushed:" destination="98k-N1-fZI" id="aAv-Dy-N9G"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogi-v3-C89" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2420" y="133"/>
+            <point key="canvasLocation" x="2420" y="132.68365817091455"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Aih-dY-eTj">

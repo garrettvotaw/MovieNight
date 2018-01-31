@@ -10,6 +10,9 @@
 		A7380263202268880040B426 /* GenreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7380262202268880040B426 /* GenreTableViewCell.swift */; };
 		A738026720226C6C0040B426 /* GenreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738026620226C6C0040B426 /* GenreTableViewController.swift */; };
 		A738026920226C980040B426 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738026820226C980040B426 /* Genre.swift */; };
+		A738026B202276450040B426 /* ActorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738026A202276450040B426 /* ActorTableViewCell.swift */; };
+		A738026D2022777A0040B426 /* ActorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738026C2022777A0040B426 /* ActorTableViewController.swift */; };
+		A738026F202277B30040B426 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738026E202277B30040B426 /* Actor.swift */; };
 		A7B09CBC201D2C9F00099D3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B09CBB201D2C9F00099D3E /* AppDelegate.swift */; };
 		A7B09CBE201D2C9F00099D3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B09CBD201D2C9F00099D3E /* ViewController.swift */; };
 		A7B09CC1201D2C9F00099D3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7B09CBF201D2C9F00099D3E /* Main.storyboard */; };
@@ -21,6 +24,9 @@
 		A7380262202268880040B426 /* GenreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableViewCell.swift; sourceTree = "<group>"; };
 		A738026620226C6C0040B426 /* GenreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableViewController.swift; sourceTree = "<group>"; };
 		A738026820226C980040B426 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		A738026A202276450040B426 /* ActorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorTableViewCell.swift; sourceTree = "<group>"; };
+		A738026C2022777A0040B426 /* ActorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorTableViewController.swift; sourceTree = "<group>"; };
+		A738026E202277B30040B426 /* Actor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
 		A7B09CB8201D2C9F00099D3E /* Movie Night.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie Night.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7B09CBB201D2C9F00099D3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7B09CBD201D2C9F00099D3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,8 +69,11 @@
 				A7B09CBB201D2C9F00099D3E /* AppDelegate.swift */,
 				A7B09CBD201D2C9F00099D3E /* ViewController.swift */,
 				A738026620226C6C0040B426 /* GenreTableViewController.swift */,
+				A738026C2022777A0040B426 /* ActorTableViewController.swift */,
 				A7380262202268880040B426 /* GenreTableViewCell.swift */,
+				A738026A202276450040B426 /* ActorTableViewCell.swift */,
 				A738026820226C980040B426 /* Genre.swift */,
+				A738026E202277B30040B426 /* Actor.swift */,
 				A7B09CBF201D2C9F00099D3E /* Main.storyboard */,
 				A7B09CC2201D2C9F00099D3E /* Assets.xcassets */,
 				A7B09CC4201D2C9F00099D3E /* LaunchScreen.storyboard */,
@@ -145,11 +154,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A738026D2022777A0040B426 /* ActorTableViewController.swift in Sources */,
 				A7B09CBE201D2C9F00099D3E /* ViewController.swift in Sources */,
+				A738026B202276450040B426 /* ActorTableViewCell.swift in Sources */,
 				A738026720226C6C0040B426 /* GenreTableViewController.swift in Sources */,
 				A7B09CBC201D2C9F00099D3E /* AppDelegate.swift in Sources */,
 				A7380263202268880040B426 /* GenreTableViewCell.swift in Sources */,
 				A738026920226C980040B426 /* Genre.swift in Sources */,
+				A738026F202277B30040B426 /* Actor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

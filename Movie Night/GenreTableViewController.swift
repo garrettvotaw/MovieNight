@@ -16,10 +16,10 @@ class GenreTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        let one = Genre(name: "Comedy", isSelected: false)
-        let two = Genre(name: "Horror", isSelected: false)
-        let three = Genre(name: "Action", isSelected: false)
-        let four = Genre(name: "Adventure", isSelected: false)
+        let one = Genre(name: "Comedy")
+        let two = Genre(name: "Horror")
+        let three = Genre(name: "Action")
+        let four = Genre(name: "Adventure")
         
         stubbedData.append(contentsOf: [one, two, three, four])
         tableView.reloadData()

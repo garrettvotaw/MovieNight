@@ -1,5 +1,5 @@
 //
-//  Genre.swift
+//  Actor.swift
 //  Movie Night
 //
 //  Created by Garrett Votaw on 1/31/18.
@@ -8,15 +8,7 @@
 
 import Foundation
 
-
-struct Genre {
+struct Actor {
     let name: String
     let id: Int
-    var isSelected: Bool = false
-    
-    init(name: String) {
-        self.name = name
-        self.id = 0
-        self.isSelected = false
-    }
 }
