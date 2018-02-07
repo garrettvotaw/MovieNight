@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AXR-PL-HCP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Movie_Night" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectionView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Movie_Night" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,6 +40,9 @@
                                         <integer key="value" value="7"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="viewResultsPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="DV7-Cy-gUt"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="ufD-nr-Feo">
                                 <rect key="frame" x="130" y="160" width="115" height="346"/>
@@ -57,15 +60,15 @@
                                                             <constraint firstAttribute="height" constant="100" id="IAe-mq-u4a"/>
                                                             <constraint firstAttribute="width" constant="115" id="gJJ-gq-wua"/>
                                                         </constraints>
-                                                        <state key="normal" image="movieNightUserUnselected">
+                                                        <state key="normal" image="UserUnselected">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="AXR-PL-HCP" kind="show" id="viw-Lz-0CM"/>
+                                                            <action selector="firstUserSelected" destination="BYZ-38-t0r" eventType="touchUpInside" id="XBQ-5T-iZu"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Person 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqa-6N-Znc">
-                                                        <rect key="frame" x="19.5" y="100" width="76.5" height="24"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqa-6N-Znc">
+                                                        <rect key="frame" x="29.5" y="100" width="56.5" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -88,15 +91,15 @@
                                                             <constraint firstAttribute="height" constant="100" id="1lW-99-B0j"/>
                                                             <constraint firstAttribute="width" constant="115" id="ImN-fz-nLn"/>
                                                         </constraints>
-                                                        <state key="normal" image="movieNightUserUnselected">
+                                                        <state key="normal" image="UserUnselected">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="AXR-PL-HCP" kind="show" id="WRE-5f-rH0"/>
+                                                            <action selector="secondUserSelected" destination="BYZ-38-t0r" eventType="touchUpInside" id="WQa-TZ-FJ8"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Person 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pix-ca-H1M">
-                                                        <rect key="frame" x="18" y="100" width="79" height="24"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pix-ca-H1M">
+                                                        <rect key="frame" x="28" y="100" width="59" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -130,6 +133,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="firstUserButton" destination="I77-SR-r6F" id="5j3-2u-AEL"/>
+                        <outlet property="firstUserStatusLabel" destination="OnD-fx-qdQ" id="lan-6v-2XO"/>
+                        <outlet property="secondUserButton" destination="Nts-4A-YQb" id="jJX-Ag-gPk"/>
+                        <outlet property="secondUserStatusLabel" destination="lEw-4b-whn" id="WWn-9W-7r0"/>
+                        <outlet property="viewResultsButton" destination="sse-59-jPt" id="uW6-gn-Cng"/>
+                        <segue destination="4xv-KI-PeP" kind="show" identifier="viewResultsPage" id="Jua-2x-4hI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -209,7 +220,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="actorCell" rowHeight="79" id="BUE-cT-tVK" customClass="ActorTableViewCell" customModule="Movie_Night" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="actorCell" rowHeight="79" id="BUE-cT-tVK" customClass="ActorTableViewCell" customModule="Movie_Night" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BUE-cT-tVK" id="tIS-8H-K3T">
@@ -268,6 +279,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Aih-dY-eTj">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EE3-mx-VUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AXR-PL-HCP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="3be-tO-duc">
@@ -287,16 +299,60 @@
                         <segue destination="AbX-Js-L7b" kind="relationship" relationship="rootViewController" id="VV7-Pc-DC4"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EE3-mx-VUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="932" y="134"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VLs-oQ-sEe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4xv-KI-PeP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Lhw-Ip-ng9">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.4603847861289978" green="0.51406574249267578" blue="0.69244760274887085" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9ma-hE-YjK" kind="relationship" relationship="rootViewController" id="jh7-EC-SI8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kFd-sk-Mxs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136" y="886.95652173913049"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="oyL-Ft-fZ6">
+            <objects>
+                <tableViewController id="9ma-hE-YjK" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2Lg-SE-euN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="HOR-x6-ubg">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HOR-x6-ubg" id="zSa-aB-lV6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9ma-hE-YjK" id="2Gm-tQ-pJJ"/>
+                            <outlet property="delegate" destination="9ma-hE-YjK" id="YDh-oH-KFK"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="7Se-3h-OqB"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wNJ-Lf-i8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="932" y="887"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="movieNightUserUnselected" width="181" height="155"/>
+        <image name="UserUnselected" width="181" height="155"/>
         <image name="unselectedButton" width="51" height="51"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="viw-Lz-0CM"/>
-    </inferredMetricsTieBreakers>
 </document>

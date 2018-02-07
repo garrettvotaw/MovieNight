@@ -14,6 +14,10 @@ class GenreTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if !User1.isSelected || !User2.isSelected {
+            let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectionView")
+            present(vc, animated: true, completion: nil)
+        }
         tableView.dataSource = self
         tableView.delegate = self
         let one = Genre(name: "Comedy")

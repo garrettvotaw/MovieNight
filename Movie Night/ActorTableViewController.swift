@@ -18,13 +18,6 @@ class ActorTableViewController: UITableViewController {
         let two = Actor(name: "Bob Jones", id: 0)
         let three = Actor(name: "Anthony Bilbo", id: 0)
         stubbedData.append(contentsOf: [one,two,three])
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +40,6 @@ class ActorTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "actorCell", for: indexPath) as! ActorTableViewCell
 
         cell.nameLabel.text = stubbedData[indexPath.row].name
-        // Configure the cell...
 
         return cell
     }
@@ -59,7 +51,13 @@ class ActorTableViewController: UITableViewController {
     
 
     @IBAction func donePushed(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        let selectionvc = self.storyboard!.instantiateViewController(withIdentifier: "SelectionView")
+        if User1.isSelected {
+            User1.isReady = true
+        } else if User2.isSelected {
+            User2.isReady = true
+        }
+        present(selectionvc, animated: true, completion: nil)
     }
 
     /*
