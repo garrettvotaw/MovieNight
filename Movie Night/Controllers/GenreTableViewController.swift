@@ -10,28 +10,32 @@ import UIKit
 
 class GenreTableViewController: UITableViewController {
 
-    var stubbedData = [Genre]()
+    
+    lazy var client: MovieDBClient = {
+       return MovieDBClient()
+    }()
+    
+    var genres = [Genre]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        client.getGenres { result in
+            switch result {
+            case .success(let genres):
+                print(genres)
+                self.genres = genres
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        
         if !User1.isSelected || !User2.isSelected {
             let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectionView")
             present(vc, animated: true, completion: nil)
         }
-        tableView.dataSource = self
-        tableView.delegate = self
-        let one = Genre(name: "Comedy")
-        let two = Genre(name: "Horror")
-        let three = Genre(name: "Action")
-        let four = Genre(name: "Adventure")
-        
-        stubbedData.append(contentsOf: [one, two, three, four])
-        tableView.reloadData()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,17 +50,14 @@ class GenreTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stubbedData.count
+        return genres.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "genreCell", for: indexPath) as! GenreTableViewCell
         
-        cell.nameLabel.text = stubbedData[indexPath.row].name
-        
-
-        // Configure the cell...
+        cell.nameLabel.text = genres[indexPath.row].name
 
         return cell
     }

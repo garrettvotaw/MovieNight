@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         reloadView()
         if !User1.isReady && !User2.isReady {
             viewResultsButton.isHidden = true

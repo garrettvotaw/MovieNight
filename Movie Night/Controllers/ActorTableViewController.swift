@@ -10,14 +10,24 @@ import UIKit
 
 class ActorTableViewController: UITableViewController {
 
-    var stubbedData = [Actor]()
+    lazy var client: MovieDBClient = {
+        return MovieDBClient()
+    }()
+    
+    var actors = [Actor]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let one = Actor(name: "Tom Hanks", id: 0)
-        let two = Actor(name: "Bob Jones", id: 0)
-        let three = Actor(name: "Anthony Bilbo", id: 0)
-        stubbedData.append(contentsOf: [one,two,three])
+        
+        client.getActors(page: "1") { [unowned self] result in
+            switch result {
+            case .success(let actors):
+                self.actors = actors
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,14 +42,14 @@ class ActorTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stubbedData.count
+        return actors.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "actorCell", for: indexPath) as! ActorTableViewCell
 
-        cell.nameLabel.text = stubbedData[indexPath.row].name
+        cell.nameLabel.text = actors[indexPath.row].name
 
         return cell
     }
