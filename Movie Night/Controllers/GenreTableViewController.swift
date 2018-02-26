@@ -71,6 +71,15 @@ class GenreTableViewController: UIViewController, UITableViewDelegate, UITableVi
         return 72
     }
     
+    @IBAction func nextPushed(_ sender: UIBarButtonItem) {
+        if totalSelected == 0 {
+            AlertController.presentAlert(withView: self, title: "Error", message: "You have not selected any genres. Please select at least one.")
+        }
+        if totalSelected > 4 {
+            AlertController.presentAlert(withView: self, title: "Error", message: "Please select 4 or less genres from the list")
+        }
+        performSegue(withIdentifier: "next", sender: nil)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if User1.isSelected {
             for genre in genres {

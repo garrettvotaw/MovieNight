@@ -364,13 +364,14 @@
                     <navigationItem key="navigationItem" title="Genre" id="Ol1-aN-582">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="5RT-Tv-gst">
                             <connections>
-                                <segue destination="tzy-mV-uGJ" kind="show" id="xpb-F9-bFR"/>
+                                <action selector="nextPushed:" destination="f2F-nx-gpR" id="S4e-Zc-Chu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="selectionHelperLabel" destination="rS0-aS-ytD" id="65R-Q2-0bR"/>
                         <outlet property="tableView" destination="97B-rC-sVo" id="vy2-Ld-h4q"/>
+                        <segue destination="tzy-mV-uGJ" kind="show" identifier="next" id="zDI-pc-6vh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bnv-1S-XO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
