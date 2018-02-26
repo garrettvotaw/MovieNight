@@ -10,6 +10,8 @@ import UIKit
 
 class MovieTableViewController: UITableViewController {
 
+    
+   
     lazy var client = {
        return MovieDBClient()
     }()
@@ -19,11 +21,13 @@ class MovieTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
-        
-        client.getMovies(actors: User1.actorPreferences.formattedForMovieRequest, genres: User1.genrePreferences.formattedForMovieRequest) { [unowned self] result in
+        client.getMovies(actors: MovieSorter.sortedActorPreferences.formattedForMovieRequest, genres: MovieSorter.sortedGenrePreferences.formattedForMovieRequest) { [unowned self] result in
             switch result {
             case .success(let movies):
                 self.movies = movies
+                if self.movies.isEmpty {
+                    AlertController.presentAlert(withView: self, title: "Error", message: "Unable to find movies with both user preferences")
+                }
                 self.tableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)

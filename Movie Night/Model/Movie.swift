@@ -19,10 +19,10 @@ extension Movie: JSONDecodable {
     init?(json: [String : Any]) {
         guard let title = json["title"] as? String,
               let overview = json["overview"] as? String,
-              let releaseDate = json["release_date"] as? String else {print("Parsing failed");return nil}
+              let releaseDate = json["release_date"] as? String else { return nil }
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY-MM-dd"
-        guard let date = formatter.date(from: releaseDate) else {print("GIVE IT UP MAN");return nil}
+        guard let date = formatter.date(from: releaseDate) else { return nil }
         self.title = title
         self.overview = overview
         self.releaseDate = date

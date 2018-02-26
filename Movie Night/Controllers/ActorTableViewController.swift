@@ -8,18 +8,21 @@
 
 import UIKit
 
-class ActorTableViewController: UITableViewController {
+class ActorTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     lazy var client: MovieDBClient = {
         return MovieDBClient()
     }()
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var counterLabel: UILabel!
     var actors = [Actor]()
     var totalSelected = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
         getActorsThrough(page: 3)
@@ -32,16 +35,16 @@ class ActorTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return actors.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "actorCell", for: indexPath) as! ActorTableViewCell
         actors.sort{$0.name < $1.name}
         let movies = actors[indexPath.row].associatedMovies
@@ -55,37 +58,41 @@ class ActorTableViewController: UITableViewController {
         return cell
     }
         
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         actors[indexPath.row].isSelected = true
         totalSelected += 1
         counterLabel.text = "\(totalSelected) of 5 Selected"
     }
 
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         actors[indexPath.row].isSelected = false
         totalSelected -= 1
         counterLabel.text = "\(totalSelected) of 5 Selected"
     }
 
     @IBAction func donePushed(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-        
-        if User1.isSelected {
-            for actor in actors {
-                if actor.isSelected {
-                    User1.actorPreferences.append(actor.id)
+        if totalSelected == 0 {
+            AlertController.presentAlert(withView: self, title: "Error", message: "You have not selected any actors. Please select at least one.")
+        } else if totalSelected > 5 {
+            AlertController.presentAlert(withView: self, title: "Error", message: "Please select 5 or less actors from the list")
+        } else {
+            dismiss(animated: true, completion: nil)
+            if User1.isSelected {
+                for actor in actors {
+                    if actor.isSelected {
+                        User1.actorPreferences.append(actor.id)
+                    }
                 }
-            }
-            User1.isReady = true
-        } else if User2.isSelected {
-            for actor in actors {
-                if actor.isSelected {
-                    User2.actorPreferences.append(actor.id)
+                User1.isReady = true
+            } else if User2.isSelected {
+                for actor in actors {
+                    if actor.isSelected {
+                        User2.actorPreferences.append(actor.id)
+                    }
                 }
+                User2.isReady = true
             }
-            User2.isReady = true
         }
-        
     }
     
     func getActorsThrough(page: Int) {
@@ -97,7 +104,7 @@ class ActorTableViewController: UITableViewController {
                     self.actors += actors
                     self.tableView.reloadData()
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    AlertController.presentAlert(withView: self, title: "Error", message: "\(error)")
                 }
             }
             pageCounter += 1

@@ -9,25 +9,27 @@
 import UIKit
 
 
-class GenreTableViewController: UITableViewController{
+class GenreTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     lazy var client: MovieDBClient = {
        return MovieDBClient()
     }()
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectionHelperLabel: UILabel!
     var genres = [Genre]()
     var totalSelected = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.delegate = self
+        tableView.dataSource = self
         client.getGenres { result in
             switch result {
             case .success(let genres):
                 self.genres = genres
                 self.tableView.reloadData()
             case .failure(let error):
-                print(error.localizedDescription)
+                AlertController.presentAlert(withView: self, title: "Error", message: "\(error)")
             }
         }
     }
@@ -39,33 +41,33 @@ class GenreTableViewController: UITableViewController{
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return genres.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "genreCell", for: indexPath) as! GenreTableViewCell
         cell.nameLabel.text = genres[indexPath.row].name
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         genres[indexPath.row].isSelected = true
         totalSelected += 1
-        selectionHelperLabel.text = "\(totalSelected) of 3 selected"
+        selectionHelperLabel.text = "\(totalSelected) of 4 selected"
     }
     
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         genres[indexPath.row].isSelected = true
         totalSelected -= 1
-        selectionHelperLabel.text = "\(totalSelected) of 3 selected"
+        selectionHelperLabel.text = "\(totalSelected) of 4 selected"
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 72
     }
     
