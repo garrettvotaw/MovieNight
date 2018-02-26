@@ -10,15 +10,15 @@ import Foundation
 
 
 struct User1 {
-    static var genrePreferences = [Genre]()
-    static var actorPreferences = [Actor]()
+    static var genrePreferences = [Int]()
+    static var actorPreferences = [Int]()
     static var isReady: Bool = false
     static var isSelected: Bool = false
 }
 
 struct User2 {
-    static var genrePreferences = [Genre]()
-    static var actorPreferences = [Actor]()
+    static var genrePreferences = [Int]()
+    static var actorPreferences = [Int]()
     static var isReady: Bool = false
     static var isSelected: Bool = false
 }

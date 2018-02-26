@@ -40,6 +40,18 @@ class MovieDBClient: APIClient {
             guard let actors = json["results"] as? [[String:Any]] else { return [] }
             return actors.flatMap { Actor(json: $0) }
         }, completion: completion)
+    }
+    
+    func getMovies(actors: String, genres: String, completion: @escaping (Result<[Movie], APIError>) -> Void) {
+        let endPoint = MovieDB.discover(genres: genres, people: actors)
         
+        let request = endPoint.request
+        
+        fetch(with: request, parse: { json -> [Movie] in
+            guard let movies = json["results"] as? [[String:Any]] else {return []}
+            print("\nMOVIE OBJECTS: \(movies.flatMap {Movie(json: $0)})\n")
+            return movies.flatMap { Movie(json: $0) }
+            
+        }, completion: completion)
     }
 }

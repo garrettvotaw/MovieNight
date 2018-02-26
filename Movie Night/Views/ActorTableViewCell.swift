@@ -10,8 +10,8 @@ import UIKit
 
 class ActorTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
-    
-    @IBOutlet weak var selectorButton: UIButton!
+    @IBOutlet weak var associatedMoviesLabel: UILabel!
+    @IBOutlet weak var selectorButton: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,15 +19,11 @@ class ActorTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
-    @IBAction func selectedButton() {
-        if selectorButton.image(for: .normal) == #imageLiteral(resourceName: "selectedButton") {
-            selectorButton.setImage(#imageLiteral(resourceName: "unselectedButton"), for: .normal)
+        if selected {
+            selectorButton.image = #imageLiteral(resourceName: "selectedButton")
         } else {
-            selectorButton.setImage(#imageLiteral(resourceName: "selectedButton"), for: .normal)
+            selectorButton.image = #imageLiteral(resourceName: "unselectedButton")
         }
+        // Configure the view for the selected state
     }
 }

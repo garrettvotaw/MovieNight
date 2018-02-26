@@ -16,15 +16,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var secondUserStatusLabel: UILabel!
     @IBOutlet weak var viewResultsButton: UIButton!
     
+    lazy var client = {
+        return MovieDBClient()
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        reloadView()
-        if !User1.isReady && !User2.isReady {
-            viewResultsButton.isHidden = true
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -39,13 +36,13 @@ class ViewController: UIViewController {
     @IBAction func firstUserSelected() {
         User1.isSelected = true
         User2.isSelected = false
-        dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "showLists", sender: nil)
     }
     
     @IBAction func secondUserSelected() {
         User1.isSelected = false
         User2.isSelected = true
-        dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "showLists", sender: nil)
     }
     
     func reloadView() {
@@ -64,15 +61,46 @@ class ViewController: UIViewController {
             secondUserButton.setImage(#imageLiteral(resourceName: "UserUnselected"), for: .normal)
             secondUserStatusLabel.text = "Tap here to enter preferences."
         }
+        if !User1.isReady || !User2.isReady {
+            viewResultsButton.isHidden = true
+        } else {
+            viewResultsButton.isHidden = false
+        }
     }
     
     @IBAction func viewResultsPressed() {
         if User1.isReady && User2.isReady {
             performSegue(withIdentifier: "viewResultsPage", sender: nil)
+//            print("User 1 Preferences:\n\(User1.genrePreferences)\n\(User1.actorPreferences)\n")
+//            print("User 2 Preferences:\n\(User2.genrePreferences)\n\(User2.actorPreferences)\n")
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "viewResultsPage" {
+            
         }
     }
     
-    
-    
 }
+
+
+
+extension Array {
+    var formattedForMovieRequest: String {
+        var string = ""
+        for i in self {
+            string.append("\(i) || ")
+        }
+        if !string.isEmpty {
+            string.removeLast(4)
+        }
+        return string
+    }
+}
+
+
+
+
+
 

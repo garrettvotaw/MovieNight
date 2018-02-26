@@ -14,20 +14,15 @@ class ActorTableViewController: UITableViewController {
         return MovieDBClient()
     }()
     
+    @IBOutlet weak var counterLabel: UILabel!
     var actors = [Actor]()
+    var totalSelected = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        client.getActors(page: "1") { [unowned self] result in
-            switch result {
-            case .success(let actors):
-                self.actors = actors
-                self.tableView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 80
+        getActorsThrough(page: 3)
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,36 +43,74 @@ class ActorTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "actorCell", for: indexPath) as! ActorTableViewCell
-
+        actors.sort{$0.name < $1.name}
+        let movies = actors[indexPath.row].associatedMovies
+        var titles = [String]()
+        for movie in movies {
+            titles.append(movie.title)
+        }
+        cell.associatedMoviesLabel.text = titles.prettyPrinted
         cell.nameLabel.text = actors[indexPath.row].name
 
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 72
+        
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        actors[indexPath.row].isSelected = true
+        totalSelected += 1
+        counterLabel.text = "\(totalSelected) of 5 Selected"
     }
 
-    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        actors[indexPath.row].isSelected = false
+        totalSelected -= 1
+        counterLabel.text = "\(totalSelected) of 5 Selected"
+    }
 
     @IBAction func donePushed(_ sender: UIBarButtonItem) {
-        let selectionvc = self.storyboard!.instantiateViewController(withIdentifier: "SelectionView")
+        dismiss(animated: true, completion: nil)
+        
         if User1.isSelected {
+            for actor in actors {
+                if actor.isSelected {
+                    User1.actorPreferences.append(actor.id)
+                }
+            }
             User1.isReady = true
         } else if User2.isSelected {
+            for actor in actors {
+                if actor.isSelected {
+                    User2.actorPreferences.append(actor.id)
+                }
+            }
             User2.isReady = true
         }
-        present(selectionvc, animated: true, completion: nil)
+        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func getActorsThrough(page: Int) {
+        var pageCounter = 1
+        while pageCounter <= page {
+            client.getActors(page: "\(pageCounter)") {[unowned self] result in
+                switch result {
+                case .success(let actors):
+                    self.actors += actors
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            pageCounter += 1
+        }
     }
-    */
+}
 
+extension Array {
+    var prettyPrinted: String {
+        var prettyString = ""
+        for i in self {
+            prettyString.append("\(i)\n")
+        }
+        return prettyString
+    }
 }
